@@ -40,6 +40,22 @@ cards.map((cardObject) => {
 
 };
 
+//Delete function
+
+const deleteCard = (event) => {
+  event = window.event;
+  const targetID = event.target.id;
+  const tagname = event.target.tagName;
+
+  globalStore = globalStore.filter((cardObject) => cardObject.id !== targetID);
+  localStorage.setItem("tasky",JSON.stringify({cards: globalStore}));
+
+  if(tagname === "BUTTON") {
+    return taskContainer.removeChild(event.target.parentNode.parentNode.parentNode);
+  } else {
+    return taskContainer.removeChild(event.target.parentNode.parentNode.parentNode.parentNode);
+  }
+};
 
 const saveChanges = () => {
   const taskData = {
